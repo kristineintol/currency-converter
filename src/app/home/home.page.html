@@ -1,20 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Currency Converter
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Amount:</ion-label>
+      <ion-input [(ngModel)]="amount" type="number" placeholder="Enter amount"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>From:</ion-label>
+      <ion-select [(ngModel)]="fromCurrency" interface="action-sheet" (ionChange)="convertCurrency()">
+        <ion-select-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>To:</ion-label>
+      <ion-select [(ngModel)]="toCurrency" interface="action-sheet" (ionChange)="convertCurrency()">
+        <ion-select-option *ngFor="let currency of currencies" [value]="currency.code">{{ currency.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Converted Amount:</ion-label>
+      <ion-input [value]="convertedAmount" disabled></ion-input>
+    </ion-item>
+  </ion-list>
 </ion-content>
